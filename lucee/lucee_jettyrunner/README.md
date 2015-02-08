@@ -13,7 +13,7 @@ Download release packages.
 [Windows zip](https://github.com/melinite/docker-pub/raw/lucee-4.5.1.000/lucee/lucee_jettyrunner/release/lucee_jettyrunner_4.5.1.000.zip "windows zip")
 
 
-[Linux tar](https://github.com/melinite/docker-pub/raw/lucee-4.5.1.000/lucee/lucee_jettyrunner/release/lucee_jettyrunner_4.5.1.000.zip "linux tar")
+[Linux tar](https://github.com/melinite/docker-pub/raw/lucee-4.5.1.000/lucee/lucee_jettyrunner/release/lucee_jettyrunner_4.5.1.000.tar.xz "linux tar")
 
 
 Uncompress. 
