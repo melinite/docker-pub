@@ -3,6 +3,8 @@ Lucee Ricky Express Edition
 #### Lucee + Jetty 9 runner + YOUR JVM
 Lucee Ricky Express Edition aims to be a dead simple way to experience Lucee. 
 
+![](http://upload.wikimedia.org/wikipedia/en/4/44/ILoveLucyTitleScreen.jpg)
+
 Usage
 ===
 Extremely simple. 
