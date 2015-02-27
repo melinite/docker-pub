@@ -12,7 +12,7 @@ ENV     DEBIAN_FRONTEND=noninteractive
 
 # Install Python
 RUN     apt-get update && \ 
-        apt-get install -y --force-yes --no-install-recommends apt-utils ca-certificates nano net-tools htop git wget build-essential libxslt1-dev libxml2-dev libpq-dev expect libldap2-dev libsasl2-dev libssl-dev \
+        apt-get install -y --force-yes --no-install-recommends apt-utils ca-certificates nano net-tools htop git wget build-essential libxslt1-dev libxml2-dev libpq-dev expect libldap2-dev libsasl2-dev libssl-dev libffi-dev ccache \
         python \
         python-dev && \
         apt-get clean all && \
