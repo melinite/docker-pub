@@ -45,7 +45,7 @@ set JAVA_OPTS=%JAVA_OPTS% -XX:MaxMetaspaceSize=256M
 
     )
 
-java.exe %JAVA_OPTS% "-Djetty.base=%JETTY_BASE%" -jar %JETTY_RUNNER% --port %JETTY_PORT% --path %JETTY_CONTEXT%  %LUCEE_WAR%
+java.exe %JAVA_OPTS% "-Djetty.base=%JETTY_BASE%" -jar %JETTY_RUNNER% --disablefilebuffer --stats unsecure --port %JETTY_PORT% --path %JETTY_CONTEXT%  %LUCEE_WAR%
 
 
 
