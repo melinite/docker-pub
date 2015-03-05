@@ -38,9 +38,9 @@ PIDFILE="$JETTY_BASE/lucee.pid"
 
 if [ "$1" = "nohup" ]
 then
-  nohup java $JAVA_OPTS -Djetty.base=$JETTY_BASE -jar $JETTY_RUNNER --port $JETTY_PORT --path $JETTY_CONTEXT  $LUCEE_WAR >> jettyrunner_stdout.log 2>&1 & echo $! > $PIDFILE
+  nohup java $JAVA_OPTS -Djetty.base=$JETTY_BASE -jar $JETTY_RUNNER --port $JETTY_PORT --stats unsecure --path $JETTY_CONTEXT  $LUCEE_WAR >> jettyrunner_stdout.log 2>&1 & echo $! > $PIDFILE
 else
-  java $JAVA_OPTS -Djetty.base=$JETTY_BASE -jar $JETTY_RUNNER --port $JETTY_PORT --path $JETTY_CONTEXT  $LUCEE_WAR
+  java $JAVA_OPTS -Djetty.base=$JETTY_BASE -jar $JETTY_RUNNER --port $JETTY_PORT --stats unsecure --path $JETTY_CONTEXT  $LUCEE_WAR
 fi  
 
 
