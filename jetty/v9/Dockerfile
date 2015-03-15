@@ -1,6 +1,6 @@
 # use with docker 1.4.1+ recommended
 # jetty 9 - I have been using jetty for years in production. Love it for its utilitarian simplicity and performance.
-# http://download.eclipse.org/jetty/9.2.9.v20150224/dist/jetty-distribution-9.2.9.v20150224.tar.gz
+# http://download.eclipse.org/jetty/stable-9/dist/jetty-distribution-9.2.10.v20150310.tar.gz
 
 FROM    melinite/oracle-java8-jdk:latest
 MAINTAINER David Seong <melinite@gmail.com>
@@ -17,7 +17,7 @@ USER    root
 # http://www.eclipse.org/jetty/documentation/current/startup-base-and-home.html
 # 
  
-ENV     JETTY_VERSION=9.2.9.v20150224 \
+ENV     JETTY_VERSION=9.2.10.v20150310 \
         JETTY_HOME=/opt/jetty9
 #       JETTY_BASE=/opt/myApp
 
