@@ -1,0 +1,41 @@
+#!/bin/bash
+
+SENTRY_CONF_FILE=${SENTRY_CONF_FILE:-/conf/sentry_docker_conf.py}
+
+# export env var for other scripts to work
+export SENTRY_CONF=$SENTRY_CONF_FILE
+SCRIPTS_DIR=${SENTRY_SCRIPTS_DIR:-/conf}
+
+# if starting the web worker then try to initialize DB and superuser
+if [ "$1" == "start" ] || [ "$1" == "prepare" ]; then
+
+sentry --config=$SENTRY_CONF_FILE upgrade --noinput
+
+/usr/bin/expect << EOF
+
+spawn sentry --config=$SENTRY_CONF_FILE createsuperuser --username=${SENTRY_ADMIN_USERNAME:-admin} --email=${SENTRY_ADMIN_EMAIL:-"root@localhost"}
+
+expect "Password: "
+send "${SENTRY_ADMIN_PASSWORD:-admin}\r"
+expect "Password (again): "
+send "${SENTRY_ADMIN_PASSWORD:-admin}\r"
+expect "Superuser created successfully."
+EOF
+
+    if [ -n "$SENTRY_INITIAL_TEAM" ]; then
+        python $SCRIPTS_DIR/create_team_or_project.py team ${SENTRY_ADMIN_USERNAME:-admin} $SENTRY_INITIAL_TEAM
+        if [ -n "$SENTRY_INITIAL_PROJECT" ]; then
+            python $SCRIPTS_DIR/create_team_or_project.py project $SENTRY_INITIAL_TEAM $SENTRY_INITIAL_PROJECT ${SENTRY_INITIAL_PLATFORM:-python}
+            if [ -n "$SENTRY_INITIAL_KEY" ]; then
+                python $SCRIPTS_DIR/create_team_or_project.py key $SENTRY_INITIAL_TEAM $SENTRY_INITIAL_PROJECT $SENTRY_INITIAL_KEY
+            fi
+            if [ -n "$SENTRY_INITIAL_DOMAINS" ]; then
+                python $SCRIPTS_DIR/create_team_or_project.py origins $SENTRY_INITIAL_TEAM $SENTRY_INITIAL_PROJECT "$SENTRY_INITIAL_DOMAINS"
+            fi
+        fi
+    fi
+fi
+
+if [ "$1" != "prepare" ]; then
+    sentry --config=$SENTRY_CONF_FILE $@
+fi
